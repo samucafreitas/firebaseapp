@@ -94,6 +94,17 @@
                 android:textColor="@color/colorBtnCadastrar"
                 android:textSize="12sp" />
 
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnEsqueciMinhaSenha"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginHorizontal="30dp"
+                android:text="Esqueci minha senha"
+                android:textColor="@color/colorBtnCadastrar"
+                android:textSize="12sp" />
+
         </LinearLayout>
 
     </FrameLayout>

@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
     private TextView tvUser;
     private TextView tvUserEmail;
 
-
     private TextView tvQtdQuestoes;
     private TextView tvAcertos;
     private TextView tvPercAcertos;
