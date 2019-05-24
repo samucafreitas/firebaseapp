@@ -9,10 +9,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="238dp"
+            app:srcCompat="@drawable/ic_reset" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/hintLoginEmail"
+            android:id="@+id/hintResetPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/res_email"
@@ -40,5 +47,6 @@
             android:backgroundTint="@color/colorBtnEntrar"
             android:textColor="#fff"
             android:text="Resetar minha senha" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
