@@ -371,8 +371,15 @@ public class MainActivity extends AppCompatActivity
         frameQuestao2.setVisibility(View.GONE);
         frameQuestao3.setVisibility(View.GONE);
         frameQuestao4.setVisibility(View.GONE);
+        frameQuestao5.setVisibility(View.GONE);
+        frameQuestao6.setVisibility(View.GONE);
+        frameQuestao7.setVisibility(View.GONE);
+        frameQuestao8.setVisibility(View.GONE);
+        frameQuestao9.setVisibility(View.GONE);
+        frameQuestao10.setVisibility(View.GONE);
+        frameQuestao11.setVisibility(View.GONE);
+        frameQuestao12.setVisibility(View.GONE);
     }
-
 
     private void resetQuiz() {
         this.qtdAcertos = 0;
@@ -380,6 +387,14 @@ public class MainActivity extends AppCompatActivity
         this.rgQuestao2.clearCheck();
         this.rgQuestao3.clearCheck();
         this.rgQuestao4.clearCheck();
+        this.rgQuestao5.clearCheck();
+        this.rgQuestao6.clearCheck();
+        this.rgQuestao7.clearCheck();
+        this.rgQuestao8.clearCheck();
+        this.rgQuestao9.clearCheck();
+        this.rgQuestao10.clearCheck();
+        this.rgQuestao11.clearCheck();
+        this.rgQuestao12.clearCheck();
     }
 
     private boolean validaQuestao(RadioGroup rg, RadioButton resposta) {
