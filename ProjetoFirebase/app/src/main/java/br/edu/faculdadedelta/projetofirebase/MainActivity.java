@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
     private TextView tvUser;
     private TextView tvUserEmail;
 
-
     private TextView tvQtdQuestoes;
     private TextView tvAcertos;
     private TextView tvPercAcertos;
@@ -372,7 +371,6 @@ public class MainActivity extends AppCompatActivity
         frameQuestao3.setVisibility(View.GONE);
         frameQuestao4.setVisibility(View.GONE);
     }
-
 
     private void resetQuiz() {
         this.qtdAcertos = 0;

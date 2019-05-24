@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private MaterialButton btnNovo;
     private MaterialButton btnCadastrar;
     private MaterialButton btnCancelar;
+    private MaterialButton btnEsqueciSenha;
 
     private TextInputEditText etLoginEmail;
     private TextInputEditText etLoginSenha;
@@ -92,6 +93,15 @@ public class LoginActivity extends AppCompatActivity {
                     logar();
             }
         });
+
+        btnEsqueciSenha = findViewById(R.id.btnEsqueciMinhaSenha);
+        btnEsqueciSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), EsqueciMinhaSenha.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void cadastrar() {
@@ -143,8 +153,6 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-
-                        // ...
                     }
                 });
     }
