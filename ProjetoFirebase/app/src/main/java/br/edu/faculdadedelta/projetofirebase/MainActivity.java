@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -309,9 +310,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -325,7 +323,6 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_exit) {
@@ -415,6 +412,24 @@ public class MainActivity extends AppCompatActivity
         visible.setVisibility(View.VISIBLE);
     }
 
+    /* Grava no realtime database a seguinte estrutura(árvore JSON):
+    *  usuarios -> uid -> {qtd. questoes, acertos, resultado, porcentagem de acertos}
+    *  uid = user id
+    *
+    *  {
+    *       "usuarios": {
+    *           "uid001": {
+    *               qtdQuestoes: x,
+    *               acertos: x,
+    *               resultado: x,
+    *               porcentagem: x
+    *           },
+    *           "uid002": {...},
+    *           "uid003": {...},
+    *           "uid004": {...}
+    *       }
+    *  }
+    **/
     private void gravarResultado() {
         String resultado = validaResultado();
 
@@ -432,6 +447,7 @@ public class MainActivity extends AppCompatActivity
         this.percAcertos = i;
     }
 
+    // Valida o resultado de acordo com as regras de negócio da Lucianna
     private String validaResultado() {
         if (this.percAcertos < 50)
             return "Ruim";

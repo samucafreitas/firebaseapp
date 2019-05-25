@@ -112,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             user = mAuth.getCurrentUser();
                             if (user != null) {
@@ -121,13 +120,10 @@ public class LoginActivity extends AppCompatActivity {
                                 user.updateProfile(profileUpdates);
                             }
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-
-                        // ...
                     }
                 });
 
@@ -142,13 +138,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             user = mAuth.getCurrentUser();
                             Intent intent = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(intent);
                         } else {
-                            // If sign in fails, display a message to the user.
+                            // [Dica] do Andre - Não informar qual dos dois estão incorretos para evitar brute force.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "E-mail e/ou senha incorretos!",
                                     Toast.LENGTH_SHORT).show();

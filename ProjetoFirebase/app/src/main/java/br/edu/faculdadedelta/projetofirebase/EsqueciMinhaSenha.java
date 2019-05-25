@@ -43,6 +43,40 @@ public class EsqueciMinhaSenha extends AppCompatActivity {
         });
     }
 
+    private void resetarSenha(final String email) {
+        new AlertDialog.Builder(EsqueciMinhaSenha.this)
+                .setTitle("Confirmação")
+                .setMessage("Confirmar envio de reset de senha?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        enviarEmailReset(email);
+                    }
+                })
+                .setNegativeButton("Não", null)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
+
+    }
+
+    private void enviarEmailReset(String email) {
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(EsqueciMinhaSenha.this, "E-mail enviado!", Toast.LENGTH_SHORT).show();;
+                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    new AlertDialog.Builder(EsqueciMinhaSenha.this)
+                            .setTitle("E-mail")
+                            .setMessage("Falha, tente novamente!")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+            }
+        });
+    }
+
     private boolean isEmailValid() {
         if(TextUtils.isEmpty(etResetPassword.getText().toString())) {
             ilResetPassword.setError(" ");
@@ -50,35 +84,5 @@ public class EsqueciMinhaSenha extends AppCompatActivity {
         }
 
         return true;
-    }
-
-    private void resetarSenha(String email) {
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    new AlertDialog.Builder(EsqueciMinhaSenha.this)
-                            .setTitle("Confirmação")
-                            .setMessage("Confirmar envio de reset de senha?")
-                            .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(EsqueciMinhaSenha.this, "E-mail enviado!", Toast.LENGTH_SHORT).show();;
-                                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("Não", null)
-                            .setIcon(android.R.drawable.ic_dialog_info)
-                            .show();
-
-                } else {
-                    new AlertDialog.Builder(EsqueciMinhaSenha.this)
-                            .setTitle("E-mail")
-                            .setMessage("E-mail não encontrado!")
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
-                }
-            }
-        });
     }
 }
