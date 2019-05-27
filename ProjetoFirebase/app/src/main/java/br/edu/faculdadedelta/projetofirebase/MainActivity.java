@@ -343,6 +343,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void selectFireResultado() {
+
         fireRef.child("usuarios").child(fireUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -455,5 +456,15 @@ public class MainActivity extends AppCompatActivity
             return "Bom";
 
         return "Excelente";
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = fireAuth.getCurrentUser();
+        if (currentUser == null) {
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
 }

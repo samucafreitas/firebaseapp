@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, "Falha ao efetuar o cadastro! Tente novamente..",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
