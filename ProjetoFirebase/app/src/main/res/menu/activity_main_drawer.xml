@@ -11,6 +11,10 @@
                     android:id="@+id/nav_resultado"
                     android:icon="@drawable/ic_menu_tarefas"
                     android:title="@string/menu_resultado_final" />
+                <item
+                    android:id="@+id/nav_noticias"
+                    android:icon="@drawable/ic_menu_tarefas"
+                    android:title="@string/menu_noticias" />
             </menu>
         </item>
         <item android:title="Conta">

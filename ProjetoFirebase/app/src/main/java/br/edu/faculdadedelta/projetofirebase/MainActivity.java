@@ -1,5 +1,6 @@
 package br.edu.faculdadedelta.projetofirebase;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,11 +16,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,8 +36,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.faculdadedelta.projetofirebase.util.NoticiasProcess;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     private FirebaseAuth fireAuth;
     private FirebaseUser fireUser;
@@ -63,6 +77,7 @@ public class MainActivity extends AppCompatActivity
     private FrameLayout frameQuestao11;
     private FrameLayout frameQuestao12;
     private FrameLayout frameFinal;
+    private FrameLayout frameNoticias;
 
     private TextView tvUser;
     private TextView tvUserEmail;
@@ -157,6 +172,7 @@ public class MainActivity extends AppCompatActivity
         frameQuestao12 = findViewById(R.id.frameDoze);
 
         frameFinal = findViewById(R.id.frameFinal);
+        frameNoticias = findViewById(R.id.frameNoticias);
 
         rgQuestao1 = findViewById(R.id.radioQuestao1);
         rgQuestao2 = findViewById(R.id.radioQuestao2);
@@ -285,6 +301,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (validaQuestao(rgQuestao12, (RadioButton) findViewById(R.id.resposta12))) {
                     intentFrame(frameQuestao12, frameFinal);
                     calcPercAcertos();
@@ -294,6 +311,8 @@ public class MainActivity extends AppCompatActivity
                     tvFinalResult.setText("Resultado: " + validaResultado());
                     gravarResultado();
                 }
+
+                popularPoliticalChart();
             }
         });
 
@@ -306,6 +325,31 @@ public class MainActivity extends AppCompatActivity
                 frameQuestao1.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private void popularPoliticalChart() {
+        float politicalPercents[] = {35.5f, 50.3f, 48f, 13f};
+        // Classificações
+        String ideologies[] = {"Direitoide", "Estatista", "Esquerdoide", "Anarcochatista"};
+
+        List<PieEntry> pieEntries = new ArrayList<>();
+        for (int i = 0; i < politicalPercents.length; i++) {
+            pieEntries.add(new PieEntry(politicalPercents[i], ideologies[i]));
+        }
+
+        PieDataSet dataSet = new PieDataSet(pieEntries, "");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        PieData data = new PieData(dataSet);
+
+        PieChart politicalChart = findViewById(R.id.politicalChart);
+
+        Description desc = new Description();
+        desc.setText("TROUXAS EVERYWHERE!");
+
+        politicalChart.setDescription(desc);
+        politicalChart.setData(data);
+        politicalChart.animateY(1000);
+        politicalChart.invalidate();
     }
 
     @Override
@@ -332,7 +376,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_resultado) {
             selectFireResultado();
             esconderFramesQuestoes();
+            popularPoliticalChart();
             frameFinal.setVisibility(View.VISIBLE);
+        } else if (id == R.id.nav_noticias) {
+            esconderFramesQuestoes();
+            new NoticiasProcess((ListView) findViewById(R.id.lvRss), MainActivity.this).execute();
+            frameNoticias.setVisibility(View.VISIBLE);
         } else if (id == R.id.nav_configuracoes) {
 
         }
@@ -376,6 +425,8 @@ public class MainActivity extends AppCompatActivity
         frameQuestao10.setVisibility(View.GONE);
         frameQuestao11.setVisibility(View.GONE);
         frameQuestao12.setVisibility(View.GONE);
+        frameFinal.setVisibility(View.GONE);
+        frameNoticias.setVisibility(View.GONE);
     }
 
     private void resetQuiz() {

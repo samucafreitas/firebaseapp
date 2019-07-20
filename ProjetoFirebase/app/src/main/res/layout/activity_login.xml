@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/ecology" />
+                app:srcCompat="@drawable/gadodemais                                         " />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
                 android:layout_marginBottom="15dp"
                 android:text="@string/res_titulo"
                 android:textAllCaps="true"
-                android:textColor="#1BA31E"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 app:fontFamily="@font/lemonada_semibold" />
 
@@ -129,7 +129,7 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/res_cadastro"
                 android:textAllCaps="true"
-                android:textColor="#1BA31E"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 app:fontFamily="@font/lemonada_semibold" />
 

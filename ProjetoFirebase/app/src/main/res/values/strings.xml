@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Arch Verde</string>
+    <string name="app_name">Não sei</string>
     <string name="tela_final">Resultado</string>
     <string name="question_1">Qual o percentual de água doce no planeta terra?</string>
     <string name="question_2">Qual o bioma (espaço geográfico) mais ameaçado do país?</string>
@@ -18,7 +18,7 @@
     <string name="res_erroForm">Campo Obrigatório</string>
     <string name="res_responder">Responder</string>
     <string name="question_4">A qualidade da água deve atender, entre outros, aos seguintes parâmetros analíticos:\nI. cloro;\nII. turbidez, cor e pH.\nIII. coliformes e flúor.</string>
-    <string name="title_activity_main2">Arch Verde</string>
+    <string name="title_activity_main2">Não sei</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -44,4 +44,5 @@
     <string name="question_10">Quando o lixo é jogado nos rios, pode ocorrer:</string>
     <string name="question_11">Qual atividade mais consome água no mundo:</string>
     <string name="question_12">Segundo a UNICEF, OMS e  WHO, qual o número estimado de pessoas no mundo sem acesso à água potável?</string>
+    <string name="menu_noticias">Notícias</string>
 </resources>

@@ -77,6 +77,11 @@
             android:id="@+id/frameFinal"
             layout="@layout/frame_final"
             android:visibility="gone"/>
+
+        <include
+            android:id="@+id/frameNoticias"
+            layout="@layout/frame_noticias"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
