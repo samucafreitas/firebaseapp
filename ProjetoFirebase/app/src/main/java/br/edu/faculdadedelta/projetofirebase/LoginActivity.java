@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText etLoginEmail;
     private TextInputEditText etLoginSenha;
 
+    private LinearLayout frameLoginTop;
     private FrameLayout frameLogin;
     private FrameLayout frameCadastro;
 
@@ -52,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         etLoginEmail = findViewById(R.id.loginEmail);
         etLoginSenha = findViewById(R.id.loginSenha);
-
+        frameLoginTop = findViewById(R.id.frameLoginTop);
         frameLogin = findViewById(R.id.frameLogin);
         frameCadastro = findViewById(R.id.frameCadastro);
 
@@ -60,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         btnNovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                frameLoginTop.setVisibility(View.GONE);
                 frameLogin.setVisibility(View.GONE);
                 frameCadastro.setVisibility(View.VISIBLE);
                 helper.limparCampos();
@@ -72,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 frameCadastro.setVisibility(View.GONE);
                 frameLogin.setVisibility(View.VISIBLE);
+                frameLoginTop.setVisibility(View.VISIBLE);
                 helper.limparCampos();
             }
         });

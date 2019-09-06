@@ -1,4 +1,4 @@
-package br.edu.faculdadedelta.projetofirebase.util;
+package br.edu.faculdadedelta.projetofirebase.process;
 
 import android.app.ProgressDialog;
 import android.content.Context;

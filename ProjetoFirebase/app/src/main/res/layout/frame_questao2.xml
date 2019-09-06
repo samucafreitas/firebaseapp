@@ -26,33 +26,45 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pampa" />
+                android:text="Pampa"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorAccent"/>
 
             <RadioButton
                 android:id="@+id/resposta2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mata Atlântica" />
+                android:text="Mata Atlântica"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorAccent"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cerrado" />
+                android:text="Cerrado"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorAccent"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amazônia" />
+                android:text="Amazônia"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorAccent"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Caatinga" />
+                android:text="Caatinga"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorAccent"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pantanal" />
+                android:text="Pantanal"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorAccent"/>
 
         </RadioGroup>
 
@@ -63,7 +75,8 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginHorizontal="30dp"
             android:text="@string/res_responder"
-            app:backgroundTint="@color/colorPrimary" />
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="15dp"/>
 
     </LinearLayout>
 

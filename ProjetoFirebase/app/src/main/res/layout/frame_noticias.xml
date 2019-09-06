@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             android:text="Notícias"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/colorTexts"/>
 
         <ListView
             android:layout_width="match_parent"

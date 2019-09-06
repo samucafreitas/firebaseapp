@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#1F0FFB</color>
-    <color name="colorPrimaryDark">#00574B</color>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#222039</color>
+    <color name="colorPrimaryDark">#222039</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorBtnEntrar">#1F0FFB</color>
-    <color name="colorBtnCadastrar">#0000FF</color>
+    <color name="colorBtnEntrar">#D81B60</color>
+    <color name="colorBtnCadastrar">#D81B60</color>
     <color name="colorBtnCancelar">#FF0000</color>
-    <color name="perguntas">#000000</color>
+    <color name="perguntas">#fff</color>
+    <color name="corTopLoginText">#fff</color>
+    <color name="colorTexts">#fff</color>
+    <color name="colorTextInputs">#ffffff</color>
+    <color name="corTopBg">#222039</color>
 </resources>

@@ -26,23 +26,31 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2,5% a 4%" />
+                android:text="2,5% a 4%"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="40% a 60%" />
+                android:text="40% a 60%"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
 
             <RadioButton
                 android:id="@+id/resposta1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="70 a 75%" />
+                android:text="70 a 75%"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="99%" />
+                android:text="99%"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
 
         </RadioGroup>
 
@@ -54,7 +62,8 @@
             android:layout_marginHorizontal="30dp"
             android:baselineAligned="false"
             android:text="@string/res_responder"
-            app:backgroundTint="@color/colorPrimary" />
+            app:cornerRadius="15dp"
+            app:backgroundTint="@color/colorBtnCadastrar" />
 
     </LinearLayout>
 </FrameLayout>

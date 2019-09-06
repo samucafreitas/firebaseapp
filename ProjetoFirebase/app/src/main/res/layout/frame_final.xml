@@ -15,32 +15,37 @@
             android:layout_height="wrap_content"
             android:text="@string/tela_final"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#fff"/>
 
         <TextView
             android:id="@+id/tvAcertos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="#fff"/>
         <TextView
             android:id="@+id/tvPercAcertos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="#fff"/>
         <TextView
             android:id="@+id/tvQtdQuestoes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="#fff"/>
         <TextView
             android:id="@+id/tvFinalResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="#fff"/>
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/politicalChart"

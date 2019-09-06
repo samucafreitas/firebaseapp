@@ -16,7 +16,7 @@
         <activity android:name=".EsqueciMinhaSenha"></activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main2"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoginActivity">
             <intent-filter>

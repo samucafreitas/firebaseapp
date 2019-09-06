@@ -1,7 +1,7 @@
 package br.edu.faculdadedelta.projetofirebase;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.button.MaterialButton;
@@ -27,6 +27,7 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,7 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.faculdadedelta.projetofirebase.util.NoticiasProcess;
+import br.edu.faculdadedelta.projetofirebase.process.NoticiasProcess;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -339,13 +340,17 @@ public class MainActivity extends AppCompatActivity
 
         PieDataSet dataSet = new PieDataSet(pieEntries, "");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        PieData data = new PieData(dataSet);
 
+        PieData data = new PieData(dataSet);
         PieChart politicalChart = findViewById(R.id.politicalChart);
+        data.setValueFormatter(new PercentFormatter(politicalChart));
+        politicalChart.setUsePercentValues(true);
 
         Description desc = new Description();
         desc.setText("TROUXAS EVERYWHERE!");
+        desc.setTextColor(Color.WHITE);
 
+        politicalChart.getLegend().setTextColor(Color.WHITE);
         politicalChart.setDescription(desc);
         politicalChart.setData(data);
         politicalChart.animateY(1000);

@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Não sei</string>
+    <string name="app_name">Laranja</string>
     <string name="tela_final">Resultado</string>
     <string name="question_1">Qual o percentual de água doce no planeta terra?</string>
     <string name="question_2">Qual o bioma (espaço geográfico) mais ameaçado do país?</string>
     <string name="question_3">Segundo a Organização Mundial de Saúde (OMS), a cada ano 7 milhões de pessoas morrem por causa da poluição do ar. No Brasil morrem:</string>
-    <string name="res_titulo">Sign in</string>
+    <string name="topLoginText">Você já se perguntou por que está se sentindo cada dia mais burro? Chegou a hora de saber se você é mais um Bolsominion!</string>
     <!-- Strings related to login -->
-    <string name="res_email">Email</string>
+    <string name="res_email">E-mail</string>
     <string name="res_senha">Senha</string>
     <string name="res_btnEntrar">Entrar</string>
     <string name="res_btnNovoCadastro">Não possui cadastro? Cadastre-se</string>
@@ -45,4 +45,6 @@
     <string name="question_11">Qual atividade mais consome água no mundo:</string>
     <string name="question_12">Segundo a UNICEF, OMS e  WHO, qual o número estimado de pessoas no mundo sem acesso à água potável?</string>
     <string name="menu_noticias">Notícias</string>
+    <string name="bem_vindo">Bem vindo!</string>
+
 </resources>
