@@ -1,4 +1,4 @@
-package br.edu.faculdadedelta.projetofirebase.modelo;
+package br.edu.faculdadedelta.projetofirebase.model;
 
 import java.io.Serializable;
 

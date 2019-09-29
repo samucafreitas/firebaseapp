@@ -1,10 +1,15 @@
-package br.edu.faculdadedelta.projetofirebase.process;
+package br.edu.faculdadedelta.projetofirebase.resource;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -18,6 +23,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import br.edu.faculdadedelta.projetofirebase.R;
 
 public class NoticiasProcess extends AsyncTask<Integer, Void, Exception> {
     ArrayList<String> titles;
@@ -119,7 +126,18 @@ public class NoticiasProcess extends AsyncTask<Integer, Void, Exception> {
     @Override
     protected void onPostExecute(Exception s) {
         super.onPostExecute(s);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_list_item_1, titles);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(contexto, android.R.layout.simple_list_item_1, titles) {
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+
+                textView.setTextColor(Color.WHITE);
+
+                return textView;
+            }
+        };
+
         lvRss.setAdapter(adapter);
         progressDialog.dismiss();
     }

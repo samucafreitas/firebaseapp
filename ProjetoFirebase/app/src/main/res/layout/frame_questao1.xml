@@ -7,12 +7,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
             android:text="@string/question_1"
             android:textColor="@color/perguntas"
             android:textSize="15sp" />
@@ -24,31 +24,26 @@
             android:padding="5dp">
 
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2,5% a 4%"
-                android:textColor="@color/colorTexts"
-                android:buttonTint="@color/colorTexts"/>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="40% a 60%"
-                android:textColor="@color/colorTexts"
-                android:buttonTint="@color/colorTexts"/>
-
-            <RadioButton
                 android:id="@+id/resposta1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="70 a 75%"
+                android:text="@string/discordo_totalmente"
                 android:textColor="@color/colorTexts"
                 android:buttonTint="@color/colorTexts"/>
 
             <RadioButton
+                android:id="@+id/resposta2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="99%"
+                android:text="@string/concordo_um_pouco"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
+
+            <RadioButton
+                android:id="@+id/resposta3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/concordo_totalmente"
                 android:textColor="@color/colorTexts"
                 android:buttonTint="@color/colorTexts"/>
 
@@ -56,14 +51,13 @@
 
         <android.support.design.button.MaterialButton
             android:id="@+id/btnUm"
-            android:layout_width="178dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginHorizontal="30dp"
             android:baselineAligned="false"
             android:text="@string/res_responder"
-            app:cornerRadius="15dp"
-            app:backgroundTint="@color/colorBtnCadastrar" />
+            app:cornerRadius="15dp"/>
 
     </LinearLayout>
 </FrameLayout>

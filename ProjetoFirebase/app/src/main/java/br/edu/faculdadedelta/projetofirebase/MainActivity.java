@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.button.MaterialButton;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,7 +18,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,18 +40,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.faculdadedelta.projetofirebase.process.NoticiasProcess;
+import br.edu.faculdadedelta.projetofirebase.resource.NoticiasProcess;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
     private FirebaseAuth fireAuth;
     private FirebaseUser fireUser;
     private FirebaseDatabase fireDatabase;
     private DatabaseReference fireRef;
 
-    private MaterialButton btnFinal;
     private MaterialButton btnQuestao1;
     private MaterialButton btnQuestao2;
     private MaterialButton btnQuestao3;
@@ -62,8 +59,6 @@ public class MainActivity extends AppCompatActivity
     private MaterialButton btnQuestao8;
     private MaterialButton btnQuestao9;
     private MaterialButton btnQuestao10;
-    private MaterialButton btnQuestao11;
-    private MaterialButton btnQuestao12;
 
     private FrameLayout frameQuestao1;
     private FrameLayout frameQuestao2;
@@ -75,17 +70,15 @@ public class MainActivity extends AppCompatActivity
     private FrameLayout frameQuestao8;
     private FrameLayout frameQuestao9;
     private FrameLayout frameQuestao10;
-    private FrameLayout frameQuestao11;
-    private FrameLayout frameQuestao12;
     private FrameLayout frameFinal;
     private FrameLayout frameNoticias;
 
     private TextView tvUser;
     private TextView tvUserEmail;
 
-    private TextView tvQtdQuestoes;
-    private TextView tvAcertos;
-    private TextView tvPercAcertos;
+    private TextView tvCentroide;
+    private TextView tvDireitoide;
+    private TextView tvEsquerdoide;
     private TextView tvFinalResult;
 
     private RadioGroup rgQuestao1;
@@ -98,12 +91,16 @@ public class MainActivity extends AppCompatActivity
     private RadioGroup rgQuestao8;
     private RadioGroup rgQuestao9;
     private RadioGroup rgQuestao10;
-    private RadioGroup rgQuestao11;
-    private RadioGroup rgQuestao12;
 
-    private int qtdAcertos = 0;
-    private int qtdQuestoes = 12;
-    private double percAcertos = 0;
+    private final int QTDEQUESTOES = 10;
+
+    private float pontosDiscordoTotalmente = 0;
+    private float pontosConcordoUmPouco = 0;
+    private float pontosConcordoTotalmente = 0;
+
+    private float percConcordoTotal = 0;
+    private float percConcordoPouco = 0;
+    private float percDiscordoTotalmente = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,9 +151,9 @@ public class MainActivity extends AppCompatActivity
         tvUserEmail = findViewById(R.id.tvUserEmail);
         tvUserEmail.setText(fireUser.getEmail());
 
-        tvQtdQuestoes = findViewById(R.id.tvQtdQuestoes);
-        tvAcertos = findViewById(R.id.tvAcertos);
-        tvPercAcertos = findViewById(R.id.tvPercAcertos);
+        tvCentroide = findViewById(R.id.tvCentroide);
+        tvDireitoide = findViewById(R.id.tvDireitoide);
+        tvEsquerdoide = findViewById(R.id.tvEsquerdoide);
         tvFinalResult = findViewById(R.id.tvFinalResult);
 
         frameQuestao1 = findViewById(R.id.frameUm);
@@ -169,8 +166,6 @@ public class MainActivity extends AppCompatActivity
         frameQuestao8 = findViewById(R.id.frameOito);
         frameQuestao9 = findViewById(R.id.frameNove);
         frameQuestao10 = findViewById(R.id.frameDez);
-        frameQuestao11 = findViewById(R.id.frameOnze);
-        frameQuestao12 = findViewById(R.id.frameDoze);
 
         frameFinal = findViewById(R.id.frameFinal);
         frameNoticias = findViewById(R.id.frameNoticias);
@@ -185,14 +180,12 @@ public class MainActivity extends AppCompatActivity
         rgQuestao8 = findViewById(R.id.radioQuestao8);
         rgQuestao9 = findViewById(R.id.radioQuestao9);
         rgQuestao10 = findViewById(R.id.radioQuestao10);
-        rgQuestao11 = findViewById(R.id.radioQuestao11);
-        rgQuestao12 = findViewById(R.id.radioQuestao12);
 
         btnQuestao1 = findViewById(R.id.btnUm);
         btnQuestao1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao1, (RadioButton) findViewById(R.id.resposta1))) {
+                if (validaQuestao(rgQuestao1)) {
                     intentFrame(frameQuestao1, frameQuestao2);
                 }
             }
@@ -202,7 +195,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao2, (RadioButton) findViewById(R.id.resposta2))) {
+                if (validaQuestao(rgQuestao2)) {
                     intentFrame(frameQuestao2, frameQuestao3);
                 }
             }
@@ -212,7 +205,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao3, (RadioButton) findViewById(R.id.resposta3))) {
+                if (validaQuestao(rgQuestao3)) {
                     intentFrame(frameQuestao3, frameQuestao4);
                 }
             }
@@ -222,7 +215,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao4, (RadioButton) findViewById(R.id.resposta4))) {
+                if (validaQuestao(rgQuestao4)) {
                     intentFrame(frameQuestao4, frameQuestao5);
                 }
             }
@@ -232,7 +225,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao5, (RadioButton) findViewById(R.id.resposta5))) {
+                if (validaQuestao(rgQuestao5)) {
                     intentFrame(frameQuestao5, frameQuestao6);
                 }
             }
@@ -242,7 +235,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao6, (RadioButton) findViewById(R.id.resposta6))) {
+                if (validaQuestao(rgQuestao6)) {
                     intentFrame(frameQuestao6, frameQuestao7);
                 }
             }
@@ -252,7 +245,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao7, (RadioButton) findViewById(R.id.resposta7))) {
+                if (validaQuestao(rgQuestao7)) {
                     intentFrame(frameQuestao7, frameQuestao8);
                 }
             }
@@ -262,7 +255,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestao8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao8, (RadioButton) findViewById(R.id.resposta8))) {
+                if (validaQuestao(rgQuestao8)) {
                     intentFrame(frameQuestao8, frameQuestao9);
                 }
             }
@@ -272,9 +265,11 @@ public class MainActivity extends AppCompatActivity
         btnQuestao9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao9, (RadioButton) findViewById(R.id.resposta9))) {
-                    intentFrame(frameQuestao9, frameQuestao10);
-                }
+
+
+               if (validaQuestao(rgQuestao9)) {
+                   intentFrame(frameQuestao9, frameQuestao10);
+               }
             }
         });
 
@@ -282,57 +277,35 @@ public class MainActivity extends AppCompatActivity
         btnQuestao10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validaQuestao(rgQuestao10, (RadioButton) findViewById(R.id.resposta10))) {
-                    intentFrame(frameQuestao10, frameQuestao11);
-                }
-            }
-        });
+                if (validaQuestao(rgQuestao10)) {
+                    percConcordoTotal = (pontosConcordoTotalmente / QTDEQUESTOES) * 100;
+                    percConcordoPouco = (pontosConcordoUmPouco / QTDEQUESTOES) * 100;
+                    percDiscordoTotalmente = (pontosDiscordoTotalmente / QTDEQUESTOES) * 100;
 
-        btnQuestao11 = findViewById(R.id.btnOnze);
-        btnQuestao11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (validaQuestao(rgQuestao11, (RadioButton) findViewById(R.id.resposta11))) {
-                    intentFrame(frameQuestao11, frameQuestao12);
-                }
-            }
-        });
-
-        btnQuestao12 = findViewById(R.id.btnDoze);
-        btnQuestao12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (validaQuestao(rgQuestao12, (RadioButton) findViewById(R.id.resposta12))) {
-                    intentFrame(frameQuestao12, frameFinal);
-                    calcPercAcertos();
-                    tvAcertos.setText("Acertos: " + String.valueOf(qtdAcertos));
-                    tvQtdQuestoes.setText("Qtd. questões: " + String.valueOf(qtdQuestoes));
-                    tvPercAcertos.setText("Taxa de acertos: " + String.valueOf(percAcertos)+ "%");
-                    tvFinalResult.setText("Resultado: " + validaResultado());
                     gravarResultado();
+                    resetQuiz();
+                    resetPontos();
+                    selectFireResultado();
+                    intentFrame(frameQuestao10, frameFinal);
                 }
 
-                popularPoliticalChart();
             }
-        });
 
-        btnFinal = findViewById(R.id.btnFinal);
-        btnFinal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetQuiz();
-                frameFinal.setVisibility(View.GONE);
-                frameQuestao1.setVisibility(View.VISIBLE);
-            }
+
         });
     }
 
-    private void popularPoliticalChart() {
-        float politicalPercents[] = {35.5f, 50.3f, 48f, 13f};
-        // Classificações
-        String ideologies[] = {"Direitoide", "Estatista", "Esquerdoide", "Anarcochatista"};
+    private void resetPontos() {
+        this.pontosConcordoUmPouco = 0;
+        this.pontosConcordoTotalmente = 0;
+        this.pontosDiscordoTotalmente = 0;
+    }
 
+    private void popularPoliticalChart() {
+
+        float politicalPercents[] = {percConcordoTotal, percConcordoPouco, percDiscordoTotalmente};
+        // Classificações
+        String ideologies[] = {"Esquerdoide", "Centroide", "Direitoide"};
         List<PieEntry> pieEntries = new ArrayList<>();
         for (int i = 0; i < politicalPercents.length; i++) {
             pieEntries.add(new PieEntry(politicalPercents[i], ideologies[i]));
@@ -381,14 +354,21 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_resultado) {
             selectFireResultado();
             esconderFramesQuestoes();
-            popularPoliticalChart();
+            resetQuiz();
+            resetPontos();
             frameFinal.setVisibility(View.VISIBLE);
         } else if (id == R.id.nav_noticias) {
             esconderFramesQuestoes();
             new NoticiasProcess((ListView) findViewById(R.id.lvRss), MainActivity.this).execute();
+            resetQuiz();
+            resetPontos();
             frameNoticias.setVisibility(View.VISIBLE);
-        } else if (id == R.id.nav_configuracoes) {
 
+        } else if (id == R.id.perguntas) {
+            resetQuiz();
+            resetPontos();
+            frameFinal.setVisibility(View.GONE);
+            frameQuestao1.setVisibility(View.VISIBLE);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -396,26 +376,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void selectFireResultado() {
 
-        fireRef.child("usuarios").child(fireUser.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() != null) {
-                    tvAcertos.setText("Acertos: " + dataSnapshot.child("acertos").getValue().toString());
-                    tvQtdQuestoes.setText("Qtd. questoes: " + dataSnapshot.child("qtdQuestoes").getValue().toString());
-                    tvPercAcertos.setText("Taxa de acertos: " + dataSnapshot.child("percAcertos").getValue().toString() + "%");
-                    tvFinalResult.setText("Resultado: " + dataSnapshot.child("resultado").getValue().toString());
-                } else
-                    tvFinalResult.setText("Você ainda não fez nenhum Quiz!");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     private void esconderFramesQuestoes() {
         frameQuestao1.setVisibility(View.GONE);
@@ -428,14 +389,11 @@ public class MainActivity extends AppCompatActivity
         frameQuestao8.setVisibility(View.GONE);
         frameQuestao9.setVisibility(View.GONE);
         frameQuestao10.setVisibility(View.GONE);
-        frameQuestao11.setVisibility(View.GONE);
-        frameQuestao12.setVisibility(View.GONE);
         frameFinal.setVisibility(View.GONE);
         frameNoticias.setVisibility(View.GONE);
     }
 
     private void resetQuiz() {
-        this.qtdAcertos = 0;
         this.rgQuestao1.clearCheck();
         this.rgQuestao2.clearCheck();
         this.rgQuestao3.clearCheck();
@@ -446,16 +404,18 @@ public class MainActivity extends AppCompatActivity
         this.rgQuestao8.clearCheck();
         this.rgQuestao9.clearCheck();
         this.rgQuestao10.clearCheck();
-        this.rgQuestao11.clearCheck();
-        this.rgQuestao12.clearCheck();
     }
 
-    private boolean validaQuestao(RadioGroup rg, RadioButton resposta) {
+    private boolean validaQuestao(RadioGroup rg) {
         int checkedRadioButtonId = rg.getCheckedRadioButtonId();
         if (checkedRadioButtonId != -1) {
-            if (checkedRadioButtonId == resposta.getId()) {
-                this.qtdAcertos += 1;
-            }
+            if (checkedRadioButtonId == findViewById(R.id.resposta1).getId())
+                this.pontosDiscordoTotalmente += 1;
+            else if (checkedRadioButtonId == findViewById(R.id.resposta2).getId())
+                this.pontosConcordoUmPouco += 1;
+            else
+                this.pontosConcordoTotalmente += 1;
+
             return true;
         }
 
@@ -476,10 +436,9 @@ public class MainActivity extends AppCompatActivity
     *  {
     *       "usuarios": {
     *           "uid001": {
-    *               qtdQuestoes: x,
-    *               acertos: x,
-    *               resultado: x,
-    *               porcentagem: x
+    *               direitoide: x,
+    *               centroide: x,
+    *               esquerdoide: x
     *           },
     *           "uid002": {...},
     *           "uid003": {...},
@@ -489,29 +448,52 @@ public class MainActivity extends AppCompatActivity
     **/
     private void gravarResultado() {
         String resultado = validaResultado();
-
-        fireRef.child("usuarios").child(fireUser.getUid()).child("qtdQuestoes").setValue(qtdQuestoes);
-        fireRef.child("usuarios").child(fireUser.getUid()).child("acertos").setValue(qtdAcertos);
+        fireRef.child("usuarios").child(fireUser.getUid()).child("direitoide").setValue(percDiscordoTotalmente);
+        fireRef.child("usuarios").child(fireUser.getUid()).child("centroide").setValue(percConcordoPouco);
+        fireRef.child("usuarios").child(fireUser.getUid()).child("esquerdoide").setValue(percConcordoTotal);
         fireRef.child("usuarios").child(fireUser.getUid()).child("resultado").setValue(resultado);
-        fireRef.child("usuarios").child(fireUser.getUid()).child("percAcertos").setValue(this.percAcertos);
     }
 
-    private void calcPercAcertos() {
-        this.setPercAcertos((this.qtdAcertos * 100) / this.qtdQuestoes);
-    }
+    private void selectFireResultado() {
 
-    private void setPercAcertos(int i) {
-        this.percAcertos = i;
+        fireRef.child("usuarios").child(fireUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    String resultado = "";
+                    try {
+                        percDiscordoTotalmente = Float.parseFloat(dataSnapshot.child("direitoide").getValue().toString());
+                        percConcordoPouco = Float.parseFloat(dataSnapshot.child("centroide").getValue().toString());
+                        percConcordoTotal = Float.parseFloat(dataSnapshot.child("esquerdoide").getValue().toString());
+                        resultado = dataSnapshot.child("resultado").getValue().toString();
+                    } catch (Exception e) {}
+                    tvDireitoide.setText("Direitoide: " + (int) percDiscordoTotalmente + "%");
+                    tvCentroide.setText("Centroide: " + (int) percConcordoPouco + "%");
+                    tvEsquerdoide.setText("Esquerdoide: " + (int) percConcordoTotal + "%");
+                    tvFinalResult.setText("Resultado: " + resultado);
+
+                } else
+                    tvFinalResult.setText("Você ainda não fez nenhum teste!");
+
+                popularPoliticalChart();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     // Valida o resultado de acordo com as regras de negócio da Lucianna
     private String validaResultado() {
-        if (this.percAcertos < 50)
-            return "Ruim";
-        else if (this.percAcertos > 50 && this.percAcertos < 80)
-            return "Bom";
+        if (this.pontosConcordoUmPouco >= this.pontosConcordoTotalmente + this.pontosDiscordoTotalmente)
+            return "CENTROLOIDE";
+        else if (this.pontosConcordoTotalmente >= this.pontosConcordoUmPouco + this.pontosDiscordoTotalmente)
+            return "ESQUERDOLOIDE";
 
-        return "Excelente";
+        return "DIREITOLOIDE";
     }
 
     @Override

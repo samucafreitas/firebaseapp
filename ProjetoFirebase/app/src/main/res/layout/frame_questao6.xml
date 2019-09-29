@@ -7,14 +7,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/question_6"
             android:textColor="@color/perguntas"
-            android:padding="5dp"
+            android:paddingLeft="5dp"
             android:textSize="15sp"
             android:maxLines="10" />
 
@@ -25,31 +26,28 @@
             android:padding="5dp">
 
             <RadioButton
+                android:id="@+id/resposta1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aumento do lixo nas cidades" />
+                android:text="@string/discordo_totalmente"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
 
             <RadioButton
+                android:id="@+id/resposta2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doenças respiratórias"
-                android:id="@+id/resposta6"/>
+                android:text="@string/concordo_um_pouco"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
 
             <RadioButton
+                android:id="@+id/resposta3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Resfriamento do planeta" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contaminação das águas" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nenhuma das alternativas" />
-
+                android:text="@string/concordo_totalmente"
+                android:textColor="@color/colorTexts"
+                android:buttonTint="@color/colorTexts"/>
         </RadioGroup>
 
         <android.support.design.button.MaterialButton
@@ -57,9 +55,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/res_responder"
-            app:backgroundTint="@color/colorPrimary"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_marginHorizontal="30dp"/>
+            android:layout_marginHorizontal="30dp"
+            app:cornerRadius="15dp"/>
 
     </LinearLayout>
 

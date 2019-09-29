@@ -64,15 +64,7 @@
             layout="@layout/frame_questao10"
             android:visibility="gone"/>
 
-        <include
-            android:id="@+id/frameOnze"
-            layout="@layout/frame_questao11"
-            android:visibility="gone"/>
 
-        <include
-            android:id="@+id/frameDoze"
-            layout="@layout/frame_questao12"
-            android:visibility="gone"/>
 
         <include
             android:id="@+id/frameFinal"
@@ -82,7 +74,7 @@
         <include
             android:id="@+id/frameNoticias"
             layout="@layout/frame_noticias"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

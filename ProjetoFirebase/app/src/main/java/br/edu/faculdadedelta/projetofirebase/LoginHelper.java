@@ -4,8 +4,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
-import br.edu.faculdadedelta.projetofirebase.modelo.Usuario;
+import br.edu.faculdadedelta.projetofirebase.model.Usuario;
 
 public class LoginHelper {
 

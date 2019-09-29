@@ -19,26 +19,27 @@
             android:textColor="#fff"/>
 
         <TextView
-            android:id="@+id/tvAcertos"
+            android:id="@+id/tvDireitoide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textSize="12sp"
             android:textColor="#fff"/>
         <TextView
-            android:id="@+id/tvPercAcertos"
+            android:id="@+id/tvCentroide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textSize="12sp"
             android:textColor="#fff"/>
         <TextView
-            android:id="@+id/tvQtdQuestoes"
+            android:id="@+id/tvEsquerdoide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:textSize="12sp"
             android:textColor="#fff"/>
+
         <TextView
             android:id="@+id/tvFinalResult"
             android:layout_width="match_parent"
@@ -51,17 +52,6 @@
             android:id="@+id/politicalChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <android.support.design.button.MaterialButton
-            android:id="@+id/btnFinal"
-            android:layout_width="163dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
-            android:text="Refazer"
-            android:textColorLink="@color/colorAccent"
-            app:backgroundTint="@color/colorPrimary"/>
 
     </LinearLayout>
 

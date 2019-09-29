@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-import br.edu.faculdadedelta.projetofirebase.modelo.Usuario;
+import br.edu.faculdadedelta.projetofirebase.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
 

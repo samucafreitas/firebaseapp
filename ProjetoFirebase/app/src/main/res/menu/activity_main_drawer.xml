@@ -5,24 +5,30 @@
 
     <group android:checkableBehavior="single">
 
-        <item android:title="Quiz">
+        <item android:title="Perguntas">
             <menu>
+                <item
+                    android:id="@+id/perguntas"
+                    android:icon="@drawable/ic_menu_tarefas"
+                    android:title="Perguntas" />
                 <item
                     android:id="@+id/nav_resultado"
                     android:icon="@drawable/ic_menu_tarefas"
                     android:title="@string/menu_resultado_final" />
-                <item
-                    android:id="@+id/nav_noticias"
-                    android:icon="@drawable/ic_menu_tarefas"
-                    android:title="@string/menu_noticias" />
             </menu>
         </item>
+
+        <item android:title="Notícias">
+            <menu>
+            <item
+                android:id="@+id/nav_noticias"
+                android:icon="@drawable/ic_logo_camara"
+                android:title="@string/menu_noticias" />
+            </menu>
+        </item>
+
         <item android:title="Conta">
             <menu>
-                <item
-                    android:id="@+id/nav_configuracoes"
-                    android:icon="@drawable/ic_menu_config"
-                    android:title="@string/menu_configuracoes" />
                 <item
                     android:id="@+id/nav_exit"
                     android:icon="@drawable/ic_menu_exit"
